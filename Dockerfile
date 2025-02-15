@@ -20,15 +20,22 @@ RUN apk add --no-cache \
     ca-certificates \
     ttf-freefont \
     dumb-init \
-    bash
+    bash \
+    curl
+
+RUN curl -L https://github.com/golang-migrate/migrate/releases/download/v4.17.0/migrate.linux-amd64 -o /usr/local/bin/migrate && \
+    chmod +x /usr/local/bin/migrate
 
 WORKDIR /app
 
 COPY --from=builder /app/merch-shop ./
 COPY .env ./.env
+COPY migrations ./migrations
+COPY migrate.sh ./migrate.sh
 
+RUN chmod +x ./migrate.sh
 RUN mkdir -p /app/logs && chmod 777 /app/logs
 
 EXPOSE 8080
 
-CMD ["./merch-shop"]
+ENTRYPOINT ["bash", "-c", "./migrate.sh && ./merch-shop"]
