@@ -23,7 +23,8 @@ RUN apk add --no-cache \
     bash \
     curl
 
-RUN curl -L https://github.com/golang-migrate/migrate/releases/download/v4.17.0/migrate.linux-amd64 -o /usr/local/bin/migrate && \
+RUN apk add --no-cache tar
+RUN curl -L https://github.com/golang-migrate/migrate/releases/download/v4.17.0/migrate.linux-amd64.tar.gz | tar xvz -C /usr/local/bin/ && \
     chmod +x /usr/local/bin/migrate
 
 WORKDIR /app
