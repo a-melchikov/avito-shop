@@ -41,3 +41,4 @@ docker-compose up --build
 - `coin_transactions` — для учета переводов монет между сотрудниками.
 
 Диаграмма базы данных:
+![img.png](images/db_scheme.png)
