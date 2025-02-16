@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/a-melchikov/avito-shop/internal/config"
-	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/jackc/pgx/v4/pgxpool"
 )
 
 func NewPostgresDB(cfg *config.Config) *pgxpool.Pool {

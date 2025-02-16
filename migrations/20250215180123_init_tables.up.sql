@@ -18,7 +18,7 @@ CREATE TABLE wallets
     user_id INT PRIMARY KEY,
     -- Баланс пользователя, изначально баланс пользователя 1000, также делается проверка, чтобы пользователь не ушел в минус
     balance INTEGER NOT NULL DEFAULT 1000 CHECK (balance >= 0),
-    CONSTRAINT fk_walleфt_user
+    CONSTRAINT fk_wallet_user
         FOREIGN KEY (user_id)
             REFERENCES users (id)
             ON DELETE CASCADE
